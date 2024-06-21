@@ -7,13 +7,13 @@ import time
 from sklearn.preprocessing import StandardScaler
 
 # Load the pickle files
-with open('pickle files/xgb1_machine_failure.pkl', 'rb') as f:
+with open('xgb1_machine_failure.pkl', 'rb') as f:
     machine_failure_model = pickle.load(f)
 
-with open('pickle files/xgb2_machine_failure_type.pkl', 'rb') as f:
+with open('xgb2_machine_failure_type.pkl', 'rb') as f:
     failure_type_model = pickle.load(f)
 
-with open('pickle files/scaler.pkl', 'rb') as f:
+with open('scaler.pkl', 'rb') as f:
     scaler = pickle.load(f)
 
 # Define the Streamlit app
