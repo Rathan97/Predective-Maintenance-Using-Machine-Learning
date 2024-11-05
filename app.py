@@ -36,6 +36,8 @@ def main():
         rotational_speed = st.number_input('Rotational Speed', step=1)
         torque = st.number_input('Torque', step=0.1, format="%.1f")
         tool_wear = st.number_input('Tool Wear', step=0.1, format="%.1f")
+    
+    machine_name = st.text_input('Machine Name',placeholder="Enter the machine name")
 
     # Convert machine_type to numeric if necessary
     type_mapping = {'L': 0, 'M': 1, 'H': 2}
@@ -56,11 +58,15 @@ def main():
         # Display the results
         st.subheader('Prediction Results')
         if machine_failure_prediction[0] == 0:
+            st.success(f'The machine type is: {machine_type}')
+            st.success(f'The machine name is: {machine_name}')
             st.success('The machine is not expected to fail.')
         else:
             failure_types = {0: 'No Failure', 1: 'Power Failure', 2: 'Overstrain Failure', 3: 'Heat Dissipation Failure', 4: 'Tool Wear Failure'}
             failure_type = failure_types[failure_type_prediction[0]]
             
+            st.error(f'The machine type is: {machine_type}')
+            st.error(f'The machine name is: {machine_name}')
             st.error('The machine is likely to fail.')
             st.error(f'Type of failure predicted: {failure_type}')
             st.markdown(
@@ -94,7 +100,7 @@ def main():
             time.sleep(2)
             # Show alert message if failure is predicted
             if failure_type != 'No Failure':
-                st.toast(f'Alert: The machine is likely to fail due to {failure_type}.')
+                st.toast(f'⚠ Alert: The machine is likely to fail due to {failure_type}.')
                 time.sleep(.5)
                 st.toast('A notification 🔔 has been sent to the maintenance team regarding the failure')
            
